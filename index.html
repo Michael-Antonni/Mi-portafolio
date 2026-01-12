@@ -1,0 +1,1108 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tu Nombre | Portafolio</title>
+  <meta name="description" content="Portafolio de Tu Nombre: proyectos, habilidades y contacto." />
+  <style>
+    /* =========================
+   Base
+========================= */
+:root{
+  --bg: #0b0f14;
+  --bg-2:#0f1520;
+  --card:#0f1722;
+  --text:#eaf0ff;
+  --muted:#a7b1c6;
+  --line: rgba(255,255,255,.12);
+  --accent:#6ee7ff;
+  --accent-2:#a78bfa;
+  --radius: 18px;
+
+  --shadow: 0 18px 50px rgba(0,0,0,.35);
+  --container: 1120px;
+
+  --h1: clamp(2.0rem, 4.5vw, 3.4rem);
+  --h2: clamp(1.4rem, 2.6vw, 2.0rem);
+  --lead: clamp(1.0rem, 1.3vw, 1.15rem);
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background: radial-gradient(1200px 700px at 15% 10%, rgba(110,231,255,.10), transparent 60%),
+              radial-gradient(900px 600px at 85% 20%, rgba(167,139,250,.10), transparent 55%),
+              var(--bg);
+  color: var(--text);
+  line-height:1.55;
+}
+
+img{ max-width:100%; display:block; }
+a{ color: inherit; text-decoration:none; }
+p{ margin: 0 0 1rem; }
+h1,h2,h3,h4{ margin:0 0 .75rem; line-height:1.15; }
+h1{ font-size:var(--h1); letter-spacing:-.02em; }
+h2{ font-size:var(--h2); letter-spacing:-.01em; }
+
+.container{
+  width:min(var(--container), calc(100% - 2rem));
+  margin-inline:auto;
+}
+
+.section{
+  padding: clamp(3rem, 6vw, 5rem) 0;
+}
+.section--alt{
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.section__head{
+  margin-bottom: 1.6rem;
+}
+.section__head--row{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+.lead{ font-size:var(--lead); color: var(--muted); max-width: 62ch; }
+.muted{ color: var(--muted); }
+.small{ font-size: .92rem; }
+
+.text-gradient{
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color: transparent;
+}
+
+/* =========================
+   Buttons / Pills
+========================= */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5rem;
+  padding:.85rem 1.05rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: linear-gradient(90deg, rgba(110,231,255,.25), rgba(167,139,250,.22));
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  transition: transform .15s ease, border-color .15s ease, background .15s ease;
+  font-weight: 650;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,.28);
+}
+.btn--ghost{
+  background: rgba(255,255,255,.04);
+  box-shadow: none;
+}
+.pill{
+  display:inline-flex;
+  padding:.42rem .7rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  color: var(--muted);
+  font-size:.92rem;
+  width: fit-content;
+}
+
+/* =========================
+   Header / Nav
+========================= */
+.site-header{
+  position: sticky;
+  top:0;
+  z-index: 50;
+  background: rgba(11,15,20,.65);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: .85rem 0;
+  gap: 1rem;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  font-weight: 800;
+  letter-spacing:-.02em;
+}
+.brand__dot{
+  width: 12px; height:12px; border-radius:999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 20px rgba(110,231,255,.35);
+}
+.brand--footer{ margin-bottom: .4rem; }
+
+.nav__links{
+  display:flex;
+  align-items:center;
+  gap: .85rem;
+  list-style:none;
+  padding:0; margin:0;
+}
+
+.nav__links a{
+  padding: .55rem .7rem;
+  border-radius: 999px;
+  color: var(--muted);
+  border: 1px solid transparent;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.nav__links a:hover{
+  color: var(--text);
+  background: rgba(255,255,255,.04);
+  border-color: rgba(255,255,255,.10);
+}
+
+.nav__cta{
+  display:flex;
+  gap:.6rem;
+  align-items:center;
+}
+
+/* Hamburger (CSS only) */
+.nav__toggle{ display:none; }
+.nav__hamburger{
+  display:none;
+  width: 44px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:6px;
+  cursor:pointer;
+}
+.nav__hamburger span{
+  width: 20px;
+  height: 2px;
+  background: rgba(255,255,255,.75);
+  border-radius: 10px;
+}
+
+/* =========================
+   Cards / Lists
+========================= */
+.card{
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+.list{
+  list-style:none;
+  padding:0; margin:0;
+  display:grid;
+  gap:.6rem;
+}
+.divider{
+  height:1px;
+  background: rgba(255,255,255,.10);
+  margin: 1rem 0;
+}
+
+.link{
+  color: var(--text);
+  opacity:.9;
+  display:inline-flex;
+  gap:.4rem;
+  align-items:center;
+  border-bottom: 1px solid rgba(255,255,255,.18);
+  padding-bottom: .1rem;
+}
+.link:hover{ opacity:1; }
+
+/* =========================
+   Hero
+========================= */
+.hero{
+  padding: clamp(3.2rem, 6.5vw, 5.2rem) 0;
+}
+.hero__grid{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 1.6rem;
+  align-items:center;
+}
+.hero__actions{
+  display:flex;
+  gap:.8rem;
+  flex-wrap:wrap;
+  margin: 1.1rem 0 1.2rem;
+}
+.hero__meta{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:.85rem;
+  margin-top: 1rem;
+}
+.meta-card{
+  padding: .9rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+}
+.meta-card__kpi{ font-weight: 900; font-size: 1.2rem; }
+.meta-card__label{ color: var(--muted); font-size:.95rem; }
+
+.hero__visual{
+  position:relative;
+  min-height: 360px;
+}
+.avatar-card{
+  position:relative;
+  margin-left:auto;
+  max-width: 360px;
+  padding: 1.1rem;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: var(--shadow);
+}
+.avatar{
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,.12);
+}
+.avatar img{
+  width:100%; height:100%;
+  object-fit: cover;
+}
+.avatar-card__info{ margin-top: .9rem; }
+.avatar-card__name{ font-weight: 850; margin:0; }
+.avatar-card__role{ margin:.15rem 0 .7rem; color: var(--muted); }
+
+.chips{
+  display:flex;
+  gap:.5rem;
+  flex-wrap:wrap;
+}
+.chip{
+  padding: .35rem .6rem;
+  border-radius: 999px;
+  font-size: .85rem;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  color: var(--muted);
+}
+
+.floating{
+  position:absolute;
+  border-radius: 999px;
+  filter: blur(.2px);
+  opacity:.9;
+}
+.floating--1{
+  width: 90px; height: 90px;
+  background: rgba(110,231,255,.18);
+  left: 0; top: 20%;
+}
+.floating--2{
+  width: 130px; height: 130px;
+  background: rgba(167,139,250,.16);
+  right: 10%; top: 0;
+}
+.floating--3{
+  width: 110px; height: 110px;
+  background: rgba(255,255,255,.08);
+  right: 0; bottom: 8%;
+}
+
+/* =========================
+   About
+========================= */
+.about-grid{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 1.2rem;
+}
+.about-actions{
+  display:flex;
+  gap:.7rem;
+  margin-top: 1rem;
+  flex-wrap:wrap;
+}
+
+/* =========================
+   Skills / Services / Timeline
+========================= */
+.skills-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 1.2rem;
+}
+
+.skill{ margin: .9rem 0; }
+.skill__top{
+  display:flex;
+  justify-content:space-between;
+  gap:.8rem;
+  margin-bottom: .35rem;
+}
+.bar{
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.10);
+  overflow:hidden;
+}
+.bar span{
+  display:block;
+  height:100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+
+.services{ display:grid; gap:.9rem; margin-top:.4rem; }
+.service{
+  display:grid;
+  grid-template-columns: 44px 1fr;
+  gap:.75rem;
+  align-items:flex-start;
+}
+.service__icon{
+  width:44px; height:44px;
+  display:grid; place-items:center;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  font-size: 1.1rem;
+}
+
+.tags{
+  display:flex;
+  gap:.5rem;
+  flex-wrap:wrap;
+  margin-top: 1rem;
+}
+.tag{
+  padding: .35rem .65rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.12);
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+.timeline{
+  list-style:none;
+  padding:0; margin:0;
+  display:grid;
+  gap: .95rem;
+}
+.timeline__item{
+  position:relative;
+  padding-left: 1.15rem;
+  border-left: 1px dashed rgba(255,255,255,.18);
+}
+.timeline__dot{
+  position:absolute;
+  left: -6px;
+  top: .35rem;
+  width: 12px; height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+.timeline__title{ font-weight: 800; margin:0; }
+
+/* =========================
+   Projects
+========================= */
+.project-filters{
+  display:flex;
+  gap:.5rem;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.filter{
+  padding: .35rem .65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+.projects-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 1.2rem;
+}
+.project{ padding: 0; overflow:hidden; }
+.project__media{
+  display:block;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+}
+.project__media img{
+  width:100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform .25s ease;
+}
+.project:hover .project__media img{ transform: scale(1.03); }
+
+.project__body{ padding: 1.1rem 1.15rem 1.25rem; }
+.project__links{
+  display:flex;
+  gap: .9rem;
+  flex-wrap:wrap;
+  margin-top: .8rem;
+}
+
+/* Stats */
+.stats{
+  margin-top: 1.2rem;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 1rem;
+}
+.stat__kpi{
+  font-size: 1.6rem;
+  font-weight: 950;
+  margin:0 0 .15rem;
+}
+
+/* =========================
+   Split section
+========================= */
+.split{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 1.2rem;
+}
+.quote{
+  padding: .95rem 1rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.10);
+  margin-top: .85rem;
+}
+.cta{
+  display:grid;
+  gap:.6rem;
+  align-content:start;
+}
+
+/* =========================
+   Contact
+========================= */
+.contact-grid{
+  display:grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 1.2rem;
+}
+
+.form{ display:grid; gap: .85rem; }
+.field{ display:grid; gap: .35rem; }
+label{ font-size: .95rem; color: var(--muted); }
+input, textarea{
+  width:100%;
+  padding: .9rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.03);
+  color: var(--text);
+  outline: none;
+}
+input:focus, textarea:focus{
+  border-color: rgba(110,231,255,.45);
+  box-shadow: 0 0 0 4px rgba(110,231,255,.12);
+}
+
+/* =========================
+   Footer
+========================= */
+.footer{
+  border-top: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.15);
+  padding: 1.4rem 0;
+}
+.footer__grid{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.footer__links{
+  display:flex;
+  gap: .9rem;
+  flex-wrap:wrap;
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 980px){
+  .hero__grid,
+  .about-grid,
+  .split,
+  .contact-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .skills-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .projects-grid{
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+
+  .hero__visual{
+    min-height: auto;
+  }
+
+  .avatar-card{
+    max-width: 520px;
+    margin: 0;
+  }
+}
+
+@media (max-width: 820px){
+  .nav__cta{ display:none; }
+
+  .nav__hamburger{ display:flex; }
+
+  .nav__links{
+    position: absolute;
+    top: 68px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(var(--container), calc(100% - 2rem));
+    background: rgba(11,15,20,.92);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 18px;
+    padding: .75rem;
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+    gap:.25rem;
+    box-shadow: var(--shadow);
+  }
+
+  .nav__links a{
+    border-radius: 14px;
+    padding: .75rem .85rem;
+  }
+
+  .nav__toggle:checked ~ .nav__links{
+    display:flex;
+  }
+
+  .hero__meta{
+    grid-template-columns: 1fr;
+  }
+
+  .stats{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px){
+  .projects-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+  </style>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- ===== Header / Nav ===== -->
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Navegación principal">
+      <a class="brand" href="#top">
+        <span class="brand__dot" aria-hidden="true"></span>
+        <span class="brand__text">TuNombre</span>
+      </a>
+
+      <!-- Toggle (solo CSS) -->
+      <input type="checkbox" id="nav-toggle" class="nav__toggle" aria-label="Abrir menú" />
+      <label for="nav-toggle" class="nav__hamburger" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+
+      <ul class="nav__links">
+        <li><a href="#home">Portada</a></li>
+        <li><a href="#about">Acerca</a></li>
+        <li><a href="#skills">Aptitudes</a></li>
+        <li><a href="#projects">Proyectos</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+
+      <div class="nav__cta">
+        <a class="btn btn--ghost" href="#projects">Ver proyectos</a>
+        <a class="btn" href="#contact">Hablemos</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== Portada / Hero ===== -->
+    <section class="hero" id="home">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <p class="pill">Disponible para proyectos • Freelance / Full-time</p>
+          <h1>
+            Hola, soy <span class="text-gradient">Tu Nombre</span><br />
+            <span class="muted">Tu Rol (Ej: Diseñador & Dev)</span>
+          </h1>
+          <p class="lead">
+            Aquí va una descripción corta: qué haces, qué te diferencia y para quién trabajas.
+            Mantén esto en 2–3 líneas.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn" href="#projects">Explorar proyectos</a>
+            <a class="btn btn--ghost" href="#about">Conóceme</a>
+          </div>
+
+          <div class="hero__meta">
+            <div class="meta-card">
+              <span class="meta-card__kpi">+10</span>
+              <span class="meta-card__label">Proyectos</span>
+            </div>
+            <div class="meta-card">
+              <span class="meta-card__kpi">3+</span>
+              <span class="meta-card__label">Años</span>
+            </div>
+            <div class="meta-card">
+              <span class="meta-card__kpi">Cusco</span>
+              <span class="meta-card__label">Ubicación</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__visual" aria-hidden="true">
+          <div class="avatar-card">
+            <!-- Reemplaza por tu foto -->
+            <div class="avatar">
+              <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=600&auto=format&fit=crop&q=60"
+                   alt=""
+                   loading="lazy">
+            </div>
+            <div class="avatar-card__info">
+              <p class="avatar-card__name">Tu Nombre</p>
+              <p class="avatar-card__role">Rol / Especialidad</p>
+              <div class="chips">
+                <span class="chip">HTML</span>
+                <span class="chip">CSS</span>
+                <span class="chip">UI/UX</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating floating--1"></div>
+          <div class="floating floating--2"></div>
+          <div class="floating floating--3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Acerca de mí ===== -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section__head">
+          <h2>Acerca de mí</h2>
+          <p class="muted">Un resumen claro de quién eres y lo que aportas.</p>
+        </div>
+
+        <div class="about-grid">
+          <article class="card">
+            <h3>Mi historia</h3>
+            <p>
+              Aquí puedes poner tu historia en 5–7 líneas: experiencia, intereses, industrias,
+              objetivos y enfoque de trabajo.
+            </p>
+            <p>
+              Tip: menciona 1–2 resultados concretos (ej: “mejoré conversiones”, “optimicé procesos”, etc.).
+            </p>
+          </article>
+
+          <aside class="card">
+            <h3>Datos rápidos</h3>
+            <ul class="list">
+              <li><strong>Ubicación:</strong> Cusco, Perú</li>
+              <li><strong>Idiomas:</strong> Español / Inglés</li>
+              <li><strong>Especialidad:</strong> (Ej: Frontend, Branding, Ads)</li>
+              <li><strong>Intereses:</strong> (Ej: UX, performance, analytics)</li>
+            </ul>
+
+            <div class="about-actions">
+              <a class="btn" href="#" download>Descargar CV</a>
+              <a class="btn btn--ghost" href="#contact">Contactar</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Aptitudes (Skills + Servicios + Timeline) ===== -->
+    <section class="section section--alt" id="skills">
+      <div class="container">
+        <div class="section__head">
+          <h2>Aptitudes y más</h2>
+          <p class="muted">Habilidades, herramientas, servicios y experiencia.</p>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Skills -->
+          <article class="card">
+            <h3>Habilidades</h3>
+
+            <div class="skill">
+              <div class="skill__top">
+                <span>HTML</span><span class="muted">90%</span>
+              </div>
+              <div class="bar"><span style="width:90%"></span></div>
+            </div>
+
+            <div class="skill">
+              <div class="skill__top">
+                <span>CSS</span><span class="muted">85%</span>
+              </div>
+              <div class="bar"><span style="width:85%"></span></div>
+            </div>
+
+            <div class="skill">
+              <div class="skill__top">
+                <span>JavaScript</span><span class="muted">75%</span>
+              </div>
+              <div class="bar"><span style="width:75%"></span></div>
+            </div>
+
+            <div class="skill">
+              <div class="skill__top">
+                <span>Diseño / UI</span><span class="muted">80%</span>
+              </div>
+              <div class="bar"><span style="width:80%"></span></div>
+            </div>
+
+            <p class="muted small">
+              *Cambia porcentajes y nombres. Puedes agregar más skills duplicando el bloque.
+            </p>
+          </article>
+
+          <!-- Servicios -->
+          <article class="card">
+            <h3>Lo que puedo hacer por ti</h3>
+            <div class="services">
+              <div class="service">
+                <div class="service__icon">⚡</div>
+                <div>
+                  <h4>Web rápida y responsive</h4>
+                  <p class="muted">Landing pages, portafolios, sitios corporativos.</p>
+                </div>
+              </div>
+
+              <div class="service">
+                <div class="service__icon">🎨</div>
+                <div>
+                  <h4>UI/UX & Diseño</h4>
+                  <p class="muted">Diseño limpio, jerarquía visual, claridad.</p>
+                </div>
+              </div>
+
+              <div class="service">
+                <div class="service__icon">📈</div>
+                <div>
+                  <h4>Optimización y métricas</h4>
+                  <p class="muted">Mejoras de conversión, performance, SEO básico.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="tags">
+              <span class="tag">Figma</span>
+              <span class="tag">Git</span>
+              <span class="tag">WordPress</span>
+              <span class="tag">Elementor</span>
+              <span class="tag">Ads</span>
+            </div>
+          </article>
+
+          <!-- Timeline -->
+          <article class="card">
+            <h3>Experiencia (Timeline)</h3>
+            <ol class="timeline">
+              <li class="timeline__item">
+                <span class="timeline__dot"></span>
+                <div>
+                  <p class="timeline__title">Rol / Empresa</p>
+                  <p class="muted small">2024 — Actualidad</p>
+                  <p class="muted">Logro o responsabilidad clave en 1–2 líneas.</p>
+                </div>
+              </li>
+
+              <li class="timeline__item">
+                <span class="timeline__dot"></span>
+                <div>
+                  <p class="timeline__title">Rol / Proyecto</p>
+                  <p class="muted small">2022 — 2024</p>
+                  <p class="muted">Otro logro o proyecto importante.</p>
+                </div>
+              </li>
+
+              <li class="timeline__item">
+                <span class="timeline__dot"></span>
+                <div>
+                  <p class="timeline__title">Formación / Certificación</p>
+                  <p class="muted small">2021 — 2022</p>
+                  <p class="muted">Curso, certificación o especialización.</p>
+                </div>
+              </li>
+            </ol>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Proyectos ===== -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section__head section__head--row">
+          <div>
+            <h2>Mis proyectos</h2>
+            <p class="muted">Una selección de trabajos (puedes añadir más).</p>
+          </div>
+
+          <div class="project-filters" aria-label="Filtros (visual)">
+            <span class="filter">Web</span>
+            <span class="filter">Diseño</span>
+            <span class="filter">Marketing</span>
+            <span class="filter">Apps</span>
+          </div>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Card Proyecto -->
+          <article class="project card">
+            <a class="project__media" href="#" target="_blank" rel="noreferrer">
+              <img
+                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&auto=format&fit=crop&q=60"
+                alt="Vista previa del proyecto 1"
+                loading="lazy"
+              />
+            </a>
+            <div class="project__body">
+              <h3>Proyecto 01</h3>
+              <p class="muted">
+                Descripción corta del problema y el resultado (2–3 líneas).
+              </p>
+
+              <div class="chips">
+                <span class="chip">HTML</span>
+                <span class="chip">CSS</span>
+                <span class="chip">Responsive</span>
+              </div>
+
+              <div class="project__links">
+                <a class="link" href="#" target="_blank" rel="noreferrer">Ver demo →</a>
+                <a class="link" href="#" target="_blank" rel="noreferrer">Código →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project card">
+            <a class="project__media" href="#" target="_blank" rel="noreferrer">
+              <img
+                src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1200&auto=format&fit=crop&q=60"
+                alt="Vista previa del proyecto 2"
+                loading="lazy"
+              />
+            </a>
+            <div class="project__body">
+              <h3>Proyecto 02</h3>
+              <p class="muted">Qué hiciste, para quién y el impacto en una frase.</p>
+              <div class="chips">
+                <span class="chip">UI</span>
+                <span class="chip">Branding</span>
+                <span class="chip">Design System</span>
+              </div>
+              <div class="project__links">
+                <a class="link" href="#" target="_blank" rel="noreferrer">Ver caso →</a>
+                <a class="link" href="#" target="_blank" rel="noreferrer">Behance →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project card">
+            <a class="project__media" href="#" target="_blank" rel="noreferrer">
+              <img
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&auto=format&fit=crop&q=60"
+                alt="Vista previa del proyecto 3"
+                loading="lazy"
+              />
+            </a>
+            <div class="project__body">
+              <h3>Proyecto 03</h3>
+              <p class="muted">Optimización, campaña o producto: describe el before/after.</p>
+              <div class="chips">
+                <span class="chip">SEO</span>
+                <span class="chip">Performance</span>
+                <span class="chip">Analytics</span>
+              </div>
+              <div class="project__links">
+                <a class="link" href="#" target="_blank" rel="noreferrer">Ver →</a>
+                <a class="link" href="#" target="_blank" rel="noreferrer">Detalles →</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Bloque extra: logros -->
+        <div class="stats">
+          <div class="stat card">
+            <p class="stat__kpi">+XX%</p>
+            <p class="muted">Mejora en conversión</p>
+          </div>
+          <div class="stat card">
+            <p class="stat__kpi">-XX%</p>
+            <p class="muted">Reducción de tiempo</p>
+          </div>
+          <div class="stat card">
+            <p class="stat__kpi">+XX</p>
+            <p class="muted">Clientes / entregables</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Testimonios + CTA ===== -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="split">
+          <article class="card">
+            <h3>Testimonios</h3>
+
+            <div class="quote">
+              <p>“Comentario del cliente en 1–2 líneas.”</p>
+              <span class="muted small">— Cliente / Empresa</span>
+            </div>
+
+            <div class="quote">
+              <p>“Otro testimonio corto, directo y con resultado.”</p>
+              <span class="muted small">— Cliente / Proyecto</span>
+            </div>
+          </article>
+
+          <aside class="card cta">
+            <h3>¿Listo para trabajar juntos?</h3>
+            <p class="muted">
+              Escribe tu propuesta o idea y te respondo con próximos pasos.
+            </p>
+            <a class="btn" href="#contact">Ir a contacto</a>
+            <p class="muted small">Respuesta típica: 24–48h (edita esto).</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contacto ===== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section__head">
+          <h2>Contacto</h2>
+          <p class="muted">Deja tu mensaje o conecta por redes.</p>
+        </div>
+
+        <div class="contact-grid">
+          <article class="card">
+            <h3>Enlaces</h3>
+            <ul class="list">
+              <li><a class="link" href="#" target="_blank" rel="noreferrer">LinkedIn →</a></li>
+              <li><a class="link" href="#" target="_blank" rel="noreferrer">GitHub →</a></li>
+              <li><a class="link" href="#" target="_blank" rel="noreferrer">Behance / Dribbble →</a></li>
+              <li><a class="link" href="mailto:tuemail@correo.com">tuemail@correo.com</a></li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <p class="muted small">
+              Tip: si quieres WhatsApp, pon tu link aquí.
+            </p>
+            <a class="btn btn--ghost" href="#" target="_blank" rel="noreferrer">WhatsApp</a>
+          </article>
+
+          <article class="card">
+            <h3>Formulario</h3>
+            <form class="form" action="#" method="post">
+              <div class="field">
+                <label for="name">Nombre</label>
+                <input id="name" name="name" type="text" placeholder="Tu nombre" required />
+              </div>
+
+              <div class="field">
+                <label for="email">Correo</label>
+                <input id="email" name="email" type="email" placeholder="tucorreo@ejemplo.com" required />
+              </div>
+
+              <div class="field">
+                <label for="message">Mensaje</label>
+                <textarea id="message" name="message" rows="5" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+              </div>
+
+              <button class="btn" type="submit">Enviar mensaje</button>
+              <p class="muted small">
+                *Este formulario es visual. Para enviarlo de verdad, conecta backend o un servicio (Formspree, etc.).
+              </p>
+            </form>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <p class="brand brand--footer">
+          <span class="brand__dot" aria-hidden="true"></span>
+          <span class="brand__text">TuNombre</span>
+        </p>
+        <p class="muted small">© <span id="year">2026</span> — Todos los derechos reservados.</p>
+      </div>
+
+      <div class="footer__links">
+        <a class="link" href="#home">Inicio</a>
+        <a class="link" href="#about">Acerca</a>
+        <a class="link" href="#projects">Proyectos</a>
+        <a class="link" href="#contact">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mini script opcional (si no quieres JS, borra esto y pon el año fijo) -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
